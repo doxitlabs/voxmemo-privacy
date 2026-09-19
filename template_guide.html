@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoxMemo – Custom Template Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #f8f9fc;
+      padding: 0 16px 64px;
+    }
+
+    header {
+      background: #0D1B3E;
+      color: white;
+      padding: 40px 24px 36px;
+      margin: 0 -16px 40px;
+      text-align: center;
+    }
+
+    header .app-name {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    .lang-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .lang-nav a {
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: #e8ecf4;
+      color: #0D1B3E;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .lang-nav a:hover, .lang-nav a.active {
+      background: #0D1B3E;
+      color: white;
+    }
+
+    .max-w {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0D1B3E;
+      margin: 36px 0 12px;
+    }
+
+    p { margin-bottom: 12px; }
+
+    .tip-box {
+      background: #eef2ff;
+      border-left: 3px solid #4f46e5;
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .tip-box strong { color: #4f46e5; }
+
+    .examples {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .example-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .example-card .label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0D1B3E;
+      margin-bottom: 8px;
+    }
+
+    .example-card .emoji { font-size: 20px; }
+
+    .example-card .prompt {
+      font-size: 13px;
+      color: #475569;
+      background: #f8fafc;
+      border-radius: 6px;
+      padding: 10px 12px;
+      line-height: 1.6;
+      font-family: 'Inter', monospace;
+    }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    footer a { color: #4f46e5; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-name">VoxMemo</div>
+  <h1 id="page-title">Custom Template Guide</h1>
+  <p id="page-subtitle">Examples and tips for writing AI instructions</p>
+</header>
+
+<div class="max-w">
+
+  <div class="lang-nav">
+    <a href="#" class="active" onclick="setLang('en',this)">English</a>
+    <a href="#" onclick="setLang('hr',this)">Hrvatski</a>
+    <a href="#" onclick="setLang('de',this)">Deutsch</a>
+    <a href="#" onclick="setLang('fr',this)">Français</a>
+    <a href="#" onclick="setLang('it',this)">Italiano</a>
+    <a href="#" onclick="setLang('es',this)">Español</a>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="section active" id="lang-en">
+    <h2>What are AI instructions?</h2>
+    <p>When you record a conversation, VoxMemo sends the transcript to an AI. The <strong>AI instructions</strong> field tells the AI exactly what to do with that transcript — what kind of document to produce, what to focus on, and how to structure the output.</p>
+
+    <div class="tip-box">
+      <strong>Tip:</strong> Be specific. The more clearly you describe the output format, the better the result.
+    </div>
+
+    <h2>Example templates</h2>
+    <div class="examples">
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">☀️</span> Daily Standup</div>
+        <div class="prompt">Extract a daily standup summary. For each person, list: what they did yesterday, what they plan to do today, and any blockers. Use bullet points. Keep it short and factual.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">📞</span> Sales Call</div>
+        <div class="prompt">Summarize this sales call. Include: prospect name and company, their main pain points, objections raised, next steps agreed, and a recommended follow-up action. End with a confidence score (1–10) on likelihood to close.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🎓</span> University Lecture</div>
+        <div class="prompt">Create structured lecture notes from this transcript. Include: main topic, key concepts explained (with definitions), any examples or case studies mentioned, and a summary of 3–5 key takeaways at the end.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">⚕️</span> Doctor Consultation</div>
+        <div class="prompt">Summarize this medical consultation. List: symptoms discussed, diagnoses or possible conditions mentioned, prescribed medications or treatments, follow-up instructions, and any red flags or urgent actions the patient should take.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🧠</span> Brainstorm Session</div>
+        <div class="prompt">Organize the ideas from this brainstorm session into logical groups. For each group, list the ideas clearly. Highlight the top 3 most promising ideas with a short explanation of why they stand out.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">💼</span> Job Interview</div>
+        <div class="prompt">Summarize this job interview. List: the role discussed, key questions asked, the candidate's strongest answers, areas of concern, and a hiring recommendation with reasoning.</div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <strong>Tips for better results:</strong><br>
+      • State the output format clearly (bullet points, table, numbered list…)<br>
+      • Tell the AI what to focus on and what to ignore<br>
+      • Mention specific sections you want (e.g. "action items", "decisions made")<br>
+      • Keep instructions under 3–4 sentences for best performance
+    </div>
+  </div>
+
+  <!-- CROATIAN -->
+  <div class="section" id="lang-hr">
+    <h2>Što su upute za AI?</h2>
+    <p>Kada snimitiš razgovor, VoxMemo šalje transkript AI-u. Polje <strong>Upute za AI</strong> govori AI-u što točno treba napraviti s tim transkriptom — koji tip dokumenta stvoriti, na što se fokusirati i kako strukturirati rezultat.</p>
+
+    <div class="tip-box">
+      <strong>Savjet:</strong> Budi specifičan/a. Što jasnije opišeš format izlaza, to će rezultat biti bolji.
+    </div>
+
+    <h2>Primjeri predložaka</h2>
+    <div class="examples">
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">☀️</span> Dnevni standup</div>
+        <div class="prompt">Izvuci sažetak dnevnog standupa. Za svaku osobu napiši: što je radila jučer, što planira danas i eventualne prepreke. Koristi kratke bullet točke.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">📞</span> Prodajni poziv</div>
+        <div class="prompt">Sažmi ovaj prodajni poziv. Uključi: ime i tvrtku potencijalnog kupca, glavne probleme, prigovore, dogovorene sljedeće korake i preporučenu akciju za follow-up. Na kraju dodaj ocjenu vjerojatnosti zatvaranja prodaje (1–10).</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🎓</span> Predavanje na fakultetu</div>
+        <div class="prompt">Napravi strukturirane bilješke predavanja. Uključi: glavnu temu, ključne pojmove s definicijama, primjere i studije slučaja, te sažetak od 3–5 ključnih zaključaka.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">⚕️</span> Liječnički pregled</div>
+        <div class="prompt">Sažmi ovaj liječnički pregled. Navedi: simptome, dijagnoze ili moguće bolesti, propisane lijekove i tretmane, upute za daljnje praćenje i sve hitne akcije koje pacijent treba poduzeti.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🧠</span> Sesija brainstorminga</div>
+        <div class="prompt">Organiziraj ideje iz ove sesije u logične grupe. Za svaku grupu jasno navedi ideje. Istakni 3 najobećavajuće ideje s kratkim objašnjenjem zašto se ističu.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">💼</span> Razgovor za posao</div>
+        <div class="prompt">Sažmi ovaj razgovor za posao. Navedi: poziciju, ključna pitanja, kandidatove najjače odgovore, zabrinjavajuće točke i preporuku za zapošljavanje s obrazloženjem.</div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <strong>Savjeti za bolje rezultate:</strong><br>
+      • Jasno naznači format izlaza (bullet točke, tablica, numerirani popis…)<br>
+      • Reci AI-u na što da se fokusira, a što da zanemari<br>
+      • Navedi specifične sekcije koje želiš (npr. "akcijske točke", "donesene odluke")<br>
+      • Drži upute na 3–4 rečenice za najbolji učinak
+    </div>
+  </div>
+
+  <!-- GERMAN -->
+  <div class="section" id="lang-de">
+    <h2>Was sind KI-Anweisungen?</h2>
+    <p>Wenn du ein Gespräch aufnimmst, sendet VoxMemo das Transkript an eine KI. Das Feld <strong>KI-Anweisungen</strong> sagt der KI genau, was sie mit dem Transkript tun soll — welche Art von Dokument erstellt werden soll, worauf sie sich konzentrieren soll und wie die Ausgabe strukturiert werden soll.</p>
+
+    <div class="tip-box">
+      <strong>Tipp:</strong> Sei konkret. Je klarer du das Ausgabeformat beschreibst, desto besser das Ergebnis.
+    </div>
+
+    <h2>Beispielvorlagen</h2>
+    <div class="examples">
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">☀️</span> Tägliches Standup</div>
+        <div class="prompt">Erstelle eine Standup-Zusammenfassung. Für jede Person: was wurde gestern gemacht, was ist heute geplant, welche Hindernisse gibt es. Kurze Stichpunkte verwenden.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">📞</span> Verkaufsgespräch</div>
+        <div class="prompt">Fasse dieses Verkaufsgespräch zusammen. Enthält: Name und Firma des Interessenten, Hauptprobleme, Einwände, vereinbarte nächste Schritte und eine Folgeaktion. Abschluss mit Abschlusswahrscheinlichkeit (1–10).</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🎓</span> Universitätsvorlesung</div>
+        <div class="prompt">Erstelle strukturierte Vorlesungsnotizen. Enthält: Hauptthema, Schlüsselkonzepte mit Definitionen, Beispiele und Fallstudien sowie eine Zusammenfassung mit 3–5 wichtigen Erkenntnissen.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🧠</span> Brainstorming-Sitzung</div>
+        <div class="prompt">Ordne die Ideen in logische Gruppen. Liste die Ideen jeder Gruppe klar auf. Hebe die 3 vielversprechendsten Ideen hervor und erkläre kurz, warum sie herausstechen.</div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <strong>Tipps für bessere Ergebnisse:</strong><br>
+      • Ausgabeformat klar angeben (Aufzählungspunkte, Tabelle, nummerierte Liste…)<br>
+      • Der KI sagen, worauf sie sich konzentrieren und was sie ignorieren soll<br>
+      • Spezifische Abschnitte angeben (z.B. „Aufgaben", „Getroffene Entscheidungen")<br>
+      • Anweisungen auf 3–4 Sätze begrenzen für beste Leistung
+    </div>
+  </div>
+
+  <!-- FRENCH -->
+  <div class="section" id="lang-fr">
+    <h2>Que sont les instructions pour l'IA ?</h2>
+    <p>Lorsque tu enregistres une conversation, VoxMemo envoie la transcription à une IA. Le champ <strong>Instructions pour l'IA</strong> indique à l'IA exactement ce qu'elle doit faire avec cette transcription — quel type de document produire, sur quoi se concentrer et comment structurer le résultat.</p>
+
+    <div class="tip-box">
+      <strong>Conseil :</strong> Sois précis(e). Plus tu décris clairement le format de sortie, meilleur sera le résultat.
+    </div>
+
+    <h2>Exemples de modèles</h2>
+    <div class="examples">
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">☀️</span> Standup quotidien</div>
+        <div class="prompt">Extrais un résumé de standup quotidien. Pour chaque personne : ce qu'elle a fait hier, ce qu'elle prévoit aujourd'hui et les obstacles éventuels. Utilise des points courts.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">📞</span> Appel de vente</div>
+        <div class="prompt">Résume cet appel de vente. Inclut : nom et entreprise du prospect, principaux problèmes, objections soulevées, prochaines étapes convenues et action de suivi recommandée. Termine par un score de probabilité de clôture (1–10).</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🎓</span> Cours universitaire</div>
+        <div class="prompt">Crée des notes de cours structurées. Inclut : thème principal, concepts clés avec définitions, exemples et études de cas, et un résumé de 3 à 5 points essentiels.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🧠</span> Séance de brainstorming</div>
+        <div class="prompt">Organise les idées en groupes logiques. Liste clairement les idées de chaque groupe. Mets en avant les 3 idées les plus prometteuses avec une brève explication.</div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <strong>Conseils pour de meilleurs résultats :</strong><br>
+      • Indique clairement le format de sortie (points, tableau, liste numérotée…)<br>
+      • Dis à l'IA sur quoi se concentrer et quoi ignorer<br>
+      • Mentionne les sections spécifiques souhaitées (ex. « actions », « décisions »)<br>
+      • Garde les instructions à 3–4 phrases pour de meilleures performances
+    </div>
+  </div>
+
+  <!-- ITALIAN -->
+  <div class="section" id="lang-it">
+    <h2>Cosa sono le istruzioni per l'IA?</h2>
+    <p>Quando registri una conversazione, VoxMemo invia la trascrizione a un'IA. Il campo <strong>Istruzioni per l'IA</strong> dice all'IA esattamente cosa fare con quella trascrizione — che tipo di documento produrre, su cosa concentrarsi e come strutturare l'output.</p>
+
+    <div class="tip-box">
+      <strong>Consiglio:</strong> Sii specifico/a. Più descrivi chiaramente il formato di output, migliore sarà il risultato.
+    </div>
+
+    <h2>Esempi di modelli</h2>
+    <div class="examples">
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">☀️</span> Standup giornaliero</div>
+        <div class="prompt">Estrai un riepilogo dello standup giornaliero. Per ogni persona: cosa ha fatto ieri, cosa prevede di fare oggi e gli eventuali ostacoli. Usa punti elenco brevi.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">📞</span> Chiamata di vendita</div>
+        <div class="prompt">Riassumi questa chiamata di vendita. Includi: nome e azienda del prospect, principali problemi, obiezioni, passi successivi concordati e un'azione di follow-up raccomandata. Termina con un punteggio di probabilità di chiusura (1–10).</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🎓</span> Lezione universitaria</div>
+        <div class="prompt">Crea appunti strutturati dalla trascrizione. Includi: argomento principale, concetti chiave con definizioni, esempi e casi studio, e un riepilogo con 3–5 punti chiave.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🧠</span> Sessione di brainstorming</div>
+        <div class="prompt">Organizza le idee in gruppi logici. Elenca chiaramente le idee di ogni gruppo. Evidenzia le 3 idee più promettenti con una breve spiegazione del perché si distinguono.</div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <strong>Suggerimenti per risultati migliori:</strong><br>
+      • Indica chiaramente il formato di output (elenco puntato, tabella, lista numerata…)<br>
+      • Dì all'IA su cosa concentrarsi e cosa ignorare<br>
+      • Menziona sezioni specifiche desiderate (es. "azioni da intraprendere", "decisioni prese")<br>
+      • Mantieni le istruzioni a 3–4 frasi per le migliori prestazioni
+    </div>
+  </div>
+
+  <!-- SPANISH -->
+  <div class="section" id="lang-es">
+    <h2>¿Qué son las instrucciones para la IA?</h2>
+    <p>Cuando grabas una conversación, VoxMemo envía la transcripción a una IA. El campo <strong>Instrucciones para la IA</strong> le indica a la IA exactamente qué hacer con esa transcripción — qué tipo de documento producir, en qué enfocarse y cómo estructurar el resultado.</p>
+
+    <div class="tip-box">
+      <strong>Consejo:</strong> Sé específico/a. Cuanto más claramente describas el formato de salida, mejor será el resultado.
+    </div>
+
+    <h2>Plantillas de ejemplo</h2>
+    <div class="examples">
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">☀️</span> Standup diario</div>
+        <div class="prompt">Extrae un resumen del standup diario. Para cada persona: qué hizo ayer, qué planea hacer hoy y los obstáculos encontrados. Usa puntos cortos.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">📞</span> Llamada de ventas</div>
+        <div class="prompt">Resume esta llamada de ventas. Incluye: nombre y empresa del prospecto, principales problemas, objeciones, próximos pasos acordados y acción de seguimiento recomendada. Finaliza con una puntuación de probabilidad de cierre (1–10).</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🎓</span> Clase universitaria</div>
+        <div class="prompt">Crea notas estructuradas de clase. Incluye: tema principal, conceptos clave con definiciones, ejemplos y casos de estudio, y un resumen con 3–5 puntos clave.</div>
+      </div>
+
+      <div class="example-card">
+        <div class="label"><span class="emoji">🧠</span> Sesión de brainstorming</div>
+        <div class="prompt">Organiza las ideas en grupos lógicos. Lista claramente las ideas de cada grupo. Destaca las 3 ideas más prometedoras con una breve explicación de por qué destacan.</div>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <strong>Consejos para mejores resultados:</strong><br>
+      • Indica claramente el formato de salida (viñetas, tabla, lista numerada…)<br>
+      • Dile a la IA en qué enfocarse y qué ignorar<br>
+      • Menciona secciones específicas deseadas (ej. "acciones a tomar", "decisiones tomadas")<br>
+      • Mantén las instrucciones en 3–4 frases para el mejor rendimiento
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>VoxMemo · <a href="privacy_policy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+  function setLang(lang, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.lang-nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    el.classList.add('active');
+    const titles = {
+      en: ['Custom Template Guide', 'Examples and tips for writing AI instructions'],
+      hr: ['Vodič za predloške', 'Primjeri i savjeti za pisanje AI uputa'],
+      de: ['Vorlagen-Anleitung', 'Beispiele und Tipps für KI-Anweisungen'],
+      fr: ['Guide des modèles', 'Exemples et conseils pour rédiger des instructions IA'],
+      it: ['Guida ai modelli', 'Esempi e consigli per scrivere istruzioni IA'],
+      es: ['Guía de plantillas', 'Ejemplos y consejos para escribir instrucciones de IA'],
+    };
+    document.getElementById('page-title').textContent = titles[lang][0];
+    document.getElementById('page-subtitle').textContent = titles[lang][1];
+    return false;
+  }
+</script>
+</body>
+</html>
